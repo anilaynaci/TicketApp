@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(path="/flight")
@@ -23,11 +25,15 @@ public class FlightController {
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
         if (now.compareTo(flight.getStartDate()) >= 0) {
-            return new ResponseEntity<>("start date must be greater than current date", HttpStatus.BAD_REQUEST);
+            Map<String, String> body = new LinkedHashMap<>();
+            body.put("error", "start date must be greater than current date");
+            return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
 
         if (flight.getStartDate().compareTo(flight.getEndDate()) >= 0) {
-            return new ResponseEntity<>("end date must be greater than start date", HttpStatus.BAD_REQUEST);
+            Map<String, String> body = new LinkedHashMap<>();
+            body.put("error", "end date must be greater than start date");
+            return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
 
         flightRepository.save(flight);

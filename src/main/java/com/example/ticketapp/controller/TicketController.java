@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -48,14 +50,18 @@ public class TicketController {
             Timestamp flightStartDate = flight.get().getStartDate();
 
             if (now.compareTo(flightStartDate) >= 0) {
-                return new ResponseEntity<>("flight start date must be greater than current date", HttpStatus.BAD_REQUEST);
+                Map<String, String> body = new LinkedHashMap<>();
+                body.put("error", "flight start date must be greater than current date");
+                return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
             }
 
             Integer quota = flight.get().getQuota();
             Set<Ticket> tickets = ticketRepository.findAllByFlightAndIsCancelled(flight.get(), false);
 
             if (tickets.size() >= quota) {
-                return new ResponseEntity<>("quota is full", HttpStatus.BAD_REQUEST);
+                Map<String, String> body = new LinkedHashMap<>();
+                body.put("error", "quota is full");
+                return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
             }
 
             BigDecimal price = flight.get().getPrice();
@@ -81,7 +87,9 @@ public class TicketController {
         Ticket ticket = ticketRepository.findByTicketNumber(ticketNumber);
 
         if (ticket == null) {
-            return new ResponseEntity<>("ticket not found", HttpStatus.BAD_REQUEST);
+            Map<String, String> body = new LinkedHashMap<>();
+            body.put("error", "ticket not found");
+            return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
 
         Optional<Flight> flight = flightRepository.findById(ticket.getFlight().getId());
@@ -91,14 +99,18 @@ public class TicketController {
             Timestamp flightStartDate = flight.get().getStartDate();
 
             if (now.compareTo(flightStartDate) >= 0) {
-                return new ResponseEntity<>("flight start date must be greater than current date", HttpStatus.BAD_REQUEST);
+                Map<String, String> body = new LinkedHashMap<>();
+                body.put("error", "flight start date must be greater than current date");
+                return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
             }
 
             ticket.setCancelled(true);
 
             ticketRepository.save(ticket);
         } else {
-            return new ResponseEntity<>("flight is empty", HttpStatus.BAD_REQUEST);
+            Map<String, String> body = new LinkedHashMap<>();
+            body.put("error", "flight is empty");
+            return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
 
 
