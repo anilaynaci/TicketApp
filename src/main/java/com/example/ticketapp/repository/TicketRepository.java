@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {
 
-    Set<Ticket> findAllByFlightAndIsCancelled (Flight flight, Boolean cancelled);
+    Set<Ticket> findAllByFlightIdAndIsCancelled (Integer flight, Boolean cancelled);
     Ticket findByTicketNumber (String ticketNumber);
 
 }

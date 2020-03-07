@@ -53,7 +53,7 @@ public class TicketController {
             }
 
             Integer quota = flight.get().getQuota();
-            Set<Ticket> tickets = ticketRepository.findAllByFlightAndIsCancelled(flight.get(), false);
+            Set<Ticket> tickets = ticketRepository.findAllByFlightIdAndIsCancelled(flight.get().getId(), false);
 
             if (tickets.size() >= quota) {
                 return new ResponseEntity<>(Utils.messageToMap("quota is full"), HttpStatus.BAD_REQUEST);
@@ -72,6 +72,8 @@ public class TicketController {
             ticket.setPrice(price);
 
             ticketRepository.save(ticket);
+        } else {
+            return new ResponseEntity<>(Utils.messageToMap("flight not found"), HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<>(ticket, HttpStatus.OK);
