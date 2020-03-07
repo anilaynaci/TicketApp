@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Controller
 @RequestMapping(path="/flight")
@@ -32,5 +33,17 @@ public class FlightController {
         flightRepository.save(flight);
 
         return new ResponseEntity<>(flight, null, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/findBy")
+    public ResponseEntity<Object> findByFlight(
+            @RequestParam(value = "airportName",  required = false) String airportName,
+            @RequestParam(value = "companyName",  required = false) String companyName,
+            @RequestParam(value = "routeStart",  required = false) String routeStart,
+            @RequestParam(value = "routeDestination",  required = false) String routeDestination) {
+
+        List<Flight> flights = flightRepository.findFlight(airportName, companyName, routeStart, routeDestination);
+
+        return new ResponseEntity<>(flights, null, HttpStatus.OK);
     }
 }
