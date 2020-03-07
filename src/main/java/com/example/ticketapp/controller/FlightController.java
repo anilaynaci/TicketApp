@@ -36,7 +36,7 @@ public class FlightController {
     }
 
     @GetMapping(path = "/findBy")
-    public ResponseEntity<Object> findByFlight(
+    public ResponseEntity<Object> findFlight(
             @RequestParam(value = "airportName",  required = false) String airportName,
             @RequestParam(value = "companyName",  required = false) String companyName,
             @RequestParam(value = "routeStart",  required = false) String routeStart,

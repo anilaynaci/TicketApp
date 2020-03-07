@@ -26,11 +26,11 @@ public class RouteController {
         return new ResponseEntity<>(route, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/findAllBy")
-    public ResponseEntity<Object> findByTicketNumber(@RequestParam(value = "start", defaultValue = "") String start,
-                                                     @RequestParam(value = "destination", defaultValue = "") String destination) {
+    @GetMapping(path = "/findBy")
+    public ResponseEntity<Object> findRoute(@RequestParam(value = "start", required = false) String start,
+                                                     @RequestParam(value = "destination", required = false) String destination) {
 
-        List<Route> routes = routeRepository.findAllByStartOrDestination(start, destination);
+        List<Route> routes = routeRepository.findRoute(start, destination);
 
         return new ResponseEntity<>(routes, null, HttpStatus.OK);
     }
