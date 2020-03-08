@@ -1,0 +1,60 @@
+INSERT INTO db_ticket.company (id, name) VALUES (1, 'ABC');
+INSERT INTO db_ticket.company (id, name) VALUES (44, 'THY');
+
+INSERT INTO db_ticket.airport (id, location, name) VALUES (2, 'İstanbul', 'Atatürk Havalimanı');
+INSERT INTO db_ticket.airport (id, location, name) VALUES (42, 'İstanbul', 'Sabiha Gökçen Havalimanı');
+
+INSERT INTO db_ticket.route (id, destination, name, start) VALUES (3, 'Ankara', 'Rota 1', 'İstanbul');
+INSERT INTO db_ticket.route (id, destination, name, start) VALUES (43, 'İzmir', 'Rota 2', 'İstanbul');
+
+INSERT INTO db_ticket.flight (id, end_date, name, price, quota, start_date, airport_id, company_id, route_id) VALUES (4, '2020-03-12 10:33:29.920000000', 'Flight 1', 200.50, 30, '2020-03-11 23:26:49.920000000', 2, 1, 3);
+INSERT INTO db_ticket.flight (id, end_date, name, price, quota, start_date, airport_id, company_id, route_id) VALUES (9, '2020-03-23 16:00:09.920000000', 'Flight 2', 100.50, 30, '2020-03-23 13:13:29.920000000', 2, 1, 3);
+INSERT INTO db_ticket.flight (id, end_date, name, price, quota, start_date, airport_id, company_id, route_id) VALUES (11, '2020-03-07 18:18:24.444000000', 'Flight 3', 50.50, 30, '2020-03-07 18:01:44.444000000', 2, 1, 3);
+INSERT INTO db_ticket.flight (id, end_date, name, price, quota, start_date, airport_id, company_id, route_id) VALUES (45, '2020-03-19 08:05:04.444000000', 'Flight 4', 50.50, 30, '2020-03-19 07:48:24.444000000', 42, 44, 43);
+INSERT INTO db_ticket.flight (id, end_date, name, price, quota, start_date, airport_id, company_id, route_id) VALUES (46, '2020-05-16 04:58:24.444000000', 'Flight 5', 50.50, 30, '2020-05-16 04:41:44.444000000', 42, 44, 43);
+INSERT INTO db_ticket.flight (id, end_date, name, price, quota, start_date, airport_id, company_id, route_id) VALUES (52, '2020-05-16 04:58:24.444000000', 'Flight 10', 50.50, 3, '2020-05-16 04:41:44.444000000', 42, 44, 43);
+
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (5, 'aaa.aaa@hotmail.com', 'aaa', 'aaa');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (7, 'bbb.bbb@hotmail.com', 'bbb', 'bbb');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (12, 'ccc.ccc@hotmail.com', 'ccc', 'ccc');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (14, 'ddd.ddd@hotmail.com', 'ddd', 'ddd');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (16, 'eee.eee@hotmail.com', 'eee', 'eee');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (18, 'fff.fff@hotmail.com', 'fff', 'fff');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (20, 'ggg.ggg@hotmail.com', 'ggg', 'ggg');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (22, 'hhh.hhh@hotmail.com', 'hhh', 'hhh');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (24, 'iii.iii@hotmail.com', 'iii', 'iii');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (26, 'jjj.jjj@hotmail.com', 'jjj', 'jjj');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (28, 'kkk.kkk@hotmail.com', 'kkk', 'kkk');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (30, 'lll.lll@hotmail.com', 'lll', 'lll');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (32, 'mmm.mmm@hotmail.com', 'mmm', 'mmm');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (34, 'nnn.nnn@hotmail.com', 'nnn', 'nnn');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (36, 'ooo.ooo@hotmail.com', 'ooo', 'ooo');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (38, 'ppp.ppp@hotmail.com', 'ppp', 'ppp');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (40, 'rrr.rrr@hotmail.com', 'rrr', 'rrr');
+INSERT INTO db_ticket.user(id, email, name, surname) VALUES (50, 'sss.sss@hotmail.com', 'sss', 'sss');
+
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (6, '2020-03-07 17:37:51.519000000', false, 200.50, '6b63f9c6-0e13-4c88-b0a2-a6b0d3717367', 4, 5);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (8, '2020-03-07 17:39:38.087000000', false, 200.50, 'fd304eab-ed76-4ba6-85cb-7c525f6b5068', 4, 7);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (10, '2020-03-07 17:42:03.443000000', false, 100.50, 'da03c8a7-35e0-4eca-a176-34a98babbc94', 9, 5);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (13, '2020-03-07 18:03:04.865000000', false, 100.50, '4eac9ad4-24a0-419b-b7fa-bbff3b342f17', 9, 12);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (15, '2020-03-07 18:03:17.434000000', false, 100.50, '7c6530a3-284b-40a2-bc08-3567042b770f', 9, 14);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (17, '2020-03-07 18:04:22.938000000', false, 100.50, 'f5d811a9-ac60-4a8b-9c2b-6082a2228d5f', 9, 16);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (19, '2020-03-07 18:05:17.546000000', false, 110.55, 'e52135ee-ecf8-4c4e-85a5-29c27d1432ff', 9, 18);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (21, '2020-03-07 18:06:59.505000000', false, 110.55, 'fb27c801-0946-4947-b711-d930bb01cc78', 9, 20);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (23, '2020-03-07 18:07:19.668000000', false, 110.55, '9a71c215-0a27-4756-8db7-ef47cf99b007', 9, 22);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (25, '2020-03-07 18:09:26.286000000', false, 200.50, '7368cc89-61cb-441d-b0ab-8e21d0cf6000', 4, 24);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (27, '2020-03-07 18:09:35.832000000', false, 220.55, 'd36ec818-4b41-4881-9696-440298144f13', 4, 26);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (29, '2020-03-07 18:09:43.741000000', false, 220.55, '384075c2-2d37-459a-9802-1dfc6a5b15ff', 4, 28);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (31, '2020-03-07 18:09:51.756000000', false, 220.55, '75a67051-f4b2-45b8-8fbf-c8bd568f6fa2', 4, 30);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (33, '2020-03-07 18:09:59.595000000', false, 240.60, 'addd0dde-8da1-4004-83c4-1ebbe6e7732f', 4, 32);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (35, '2020-03-07 18:10:13.765000000', false, 240.60, '8da9387f-62e6-46e6-ab82-83ac219f80c9', 4, 34);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (37, '2020-03-07 18:10:21.327000000', false, 240.60, 'b02fe8aa-c985-4f7d-81c5-ceec65f584fd', 4, 36);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (39, '2020-03-07 18:10:30.460000000', false, 260.65, '5d539338-3464-45c8-865b-3cb1677a17dc', 4, 38);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (41, '2020-03-07 18:29:37.901000000', true, 260.65, '53241fb6-4916-4166-98f1-bfbd631a5ba4', 4, 40);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (48, '2020-03-08 01:12:20.737000000', false, 260.65, '276cf095-8d88-47b0-88a6-8e5c13162d41', 4, 40);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (51, '2020-03-08 01:13:13.883000000', false, 260.65, '429232f0-23c8-4487-b2b7-a54154e5c9c9', 4, 50);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (53, '2020-03-08 01:31:26.106000000', false, 50.50, 'c907d5aa-6a11-4970-82ec-2d2dac6a31d3', 52, 5);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (54, '2020-03-08 01:31:29.386000000', false, 65.65, '82a0e663-9104-418f-97f3-80e36174138a', 52, 5);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (55, '2020-03-08 01:31:31.142000000', false, 65.65, 'badbf083-8372-4292-8a04-f7dc5fb42838', 52, 5);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (56, '2020-03-08 10:51:53.050000000', false, 260.65, '4337f923-3f63-4cf6-ac1c-e607a52ba870', 4, 5);
+INSERT INTO db_ticket.ticket (id, c_date, is_cancelled, price, ticket_number, flight_id, user_id) VALUES (57, '2020-03-08 10:52:00.520000000', false, 260.65, 'd878ff4c-14c9-4b51-ad31-a5518ddb4b6e', 4, 5);
