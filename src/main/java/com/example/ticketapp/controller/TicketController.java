@@ -87,6 +87,10 @@ public class TicketController {
             return new ResponseEntity<>(Utils.messageToMap("ticket not found"), HttpStatus.BAD_REQUEST);
         }
 
+        if (ticket.getCancelled()) {
+            return new ResponseEntity<>(Utils.messageToMap("ticket already canceled"), HttpStatus.BAD_REQUEST);
+        }
+
         Optional<Flight> flight = flightRepository.findById(ticket.getFlight().getId());
 
         if(flight.isPresent()) {
