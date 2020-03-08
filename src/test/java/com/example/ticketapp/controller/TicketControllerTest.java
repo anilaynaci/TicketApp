@@ -16,6 +16,8 @@ import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -69,6 +71,57 @@ public class TicketControllerTest {
         printJSON(response);
 
         String expectedJson = "{\"error\":\"flight not found\"}";
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        JSONAssert.assertEquals(expectedJson, response.getBody(), false);
+
+        verify(ticketRepository, times(0)).save(any(Ticket.class));
+
+    }
+
+    @Test
+    public void save_quota_is_full_400() throws JSONException {
+
+        String ticketInJson = "{ \"user\": { \"name\": \"anil\", \"surname\": \"aynaci\", \"email\": \"anil.aynaci@hotmail.com\" }, \"flight\": { \"id\": 52 } }";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(ticketInJson, headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity("/ticket/add", entity, String.class);
+
+        printJSON(response);
+
+        String expectedJson = "{\"error\":\"quota is full\"}";
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        JSONAssert.assertEquals(expectedJson, response.getBody(), false);
+
+        verify(ticketRepository, times(0)).save(any(Ticket.class));
+
+    }
+
+    @Test
+    public void save_cancel_ticket_not_found_400() throws JSONException {
+
+        ResponseEntity<String> response = restTemplate.getForEntity("/ticket/cancel?ticketNumber={ticketNumber}", String.class, "53241fb6-4916-4166-98f1-bfbd63");
+
+        printJSON(response);
+
+        String expectedJson = "{\"error\":\"ticket not found\"}";
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        JSONAssert.assertEquals(expectedJson, response.getBody(), false);
+
+        verify(ticketRepository, times(0)).save(any(Ticket.class));
+
+    }
+
+    @Test
+    public void save_cancel_already_cancelled_400() throws JSONException {
+
+        ResponseEntity<String> response = restTemplate.getForEntity("/ticket/cancel?ticketNumber={ticketNumber}", String.class, "53241fb6-4916-4166-98f1-bfbd631a5ba4");
+
+        printJSON(response);
+
+        String expectedJson = "{\"error\":\"ticket already canceled\"}";
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         JSONAssert.assertEquals(expectedJson, response.getBody(), false);
 
